@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grocery List</title>
+  </head>
+  <body>
+    <script>
+        const data = [
+            {
+            title: "Meats",
+            items: ["Fish", "Chicken", "Pork", "Beef"],
+            },
+            {
+            title: "Soap and Shampoos",
+            items: ["Head n Shoulder", "Safeguard", "Dove", "Rejoice"],
+            },
+            {
+            title: "Vegetables",
+            items: ["arrots", "Pechay", "Talong", "Sitaw"],
+            },
+            {
+            title: "Canned Goods",
+            items: ["Corned Beef", "Sardines", "Spam", "Beef Loaf"],
+            },
+        ];
+
+        const body = document.querySelector("body");
+        body.style.cssText = "display:grid;grid-template-columns:1fr 1fr; gap:30px;width: 600px;margin: 50px";
+
+        for (let i = 0; i < data.length; i++) {
+
+            const box = document.createElement("div");
+
+            // title
+            const h2 = document.createElement("h2");
+            h2.innerText = data[i].title;
+            box.appendChild(h2).style.cssText = "margin-top:0";
+
+            // for each item
+            for (let j = 0; j < data[i].items.length; j++) {
+                // checkbox
+                const cbox = document.createElement("input");
+                cbox.type = "checkbox";
+                cbox.name = data[i].title;
+                cbox.value = data[i].items[j];
+                cbox.id = data[i].items[j];
+                cbox.style.cssText = "margin-left:20px";
+
+                // label
+                const label = document.createElement("label");
+                label.htmlFor = data[i].items[j];
+                label.innerText = ` ${data[i].items[j]}`;
+
+                box.appendChild(cbox);
+                box.appendChild(label);
+                box.appendChild(document.createElement("br"));
+            }
+            body.appendChild(box).style.cssText = "border: 1px solid grey; padding: 2em;";
+        }
+    </script>
+  </body>
+</html>
